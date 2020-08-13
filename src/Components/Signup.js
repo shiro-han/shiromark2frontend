@@ -9,7 +9,6 @@ class Signup extends React.Component {
         image: '',
         bio: ''
     }
-//name, username, password, location, image, bio 
 
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value})

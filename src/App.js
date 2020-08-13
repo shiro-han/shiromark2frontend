@@ -3,10 +3,12 @@ import {Route, Switch, withRouter} from 'react-router-dom';
 import './App.css';
 import NavBar from './Components/NavBar'
 import Home from './Components/Home'
-import Restaurant from './Components/Restaurant'
 import UserContainer from './Components/UserContainer'
 import AccountContainer from './Components/AccountContainer'
+import RestaurantContainer from './Components/RestaurantContainer'
 import Signup from './Components/Signup'
+import Profile from './Components/Profile'
+
 
 
 class App extends React.Component {
@@ -43,7 +45,7 @@ class App extends React.Component {
         console.log(data.error) //will need to display error on page 
       } else {
         localStorage.setItem("token", data.jwt)
-        this.setState({ user: data.user }, ()=> this.props.history.push(`/`)) //will want to change this redirect 
+        this.setState({ user: data.user }, ()=> this.props.history.push(`/profile`)) //will want to change this redirect 
       }
       
     })
@@ -64,7 +66,7 @@ class App extends React.Component {
         console.log(data.error) //will need to display error on page 
       } else {
         localStorage.setItem("token", data.jwt)
-        this.setState({ user: data.user }, ()=> this.props.history.push(`/`)) //will want to change this redirect 
+        this.setState({ user: data.user }, ()=> this.props.history.push(`/profile`)) //will want to change this redirect 
       }
     })
   }
@@ -80,11 +82,12 @@ class App extends React.Component {
       <>
         <NavBar user={this.state.user} logoutHandler={this.logoutHandler}/>
         <Switch>
-          <Route path="/restaurants" render={() => <Restaurant/> } />
-          <Route path="/users" render={() => <UserContainer /> } />
-          <Route path="/login" render={() => <AccountContainer loginHandler={this.loginHandler} />}/>
-          <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>}/>
-          <Route path="/" render={() => <Home/>}/>
+          <Route path="/restaurants" render={() => <RestaurantContainer /> } />
+          <Route path="/users" render={routerProps => <UserContainer {...routerProps}/> } />
+          <Route path="/login" render={() => <AccountContainer loginHandler={this.loginHandler} /> } />
+          <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} /> } />
+          <Route path="/profile" render={() => <Profile user={this.state.user} /> } />
+          <Route path="/" render={() => <Home /> } />
         </Switch>
       </>
     )

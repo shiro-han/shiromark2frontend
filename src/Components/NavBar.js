@@ -7,7 +7,8 @@ const NavBar = (props) => {
         <NavLink to="/"> Home </NavLink>
         {props.user ?
             <>
-                <NavLink to={`/users/${props.user.id}`}><button> My Profile {props.user.name} </button> </NavLink> 
+                {/* <NavLink to={`/users/${props.user.id}`}><button> My Profile {props.user.name} </button> </NavLink>  */}
+                <NavLink to={'/profile'}><button> My Profile </button></NavLink>
                 <button onClick={props.logoutHandler}> Log Out </button>
             </>
         :
