@@ -13,7 +13,7 @@ const Profile = (props) => {
                 <NavLink to={`/users/${props.user.id}`}>View Public Profile Page</NavLink>
             </div>
         :
-            <Redirect to="/login" />
+            <Redirect to="/login" /> //bug with refreshing and App state here
         }
     </>
         
