@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom'
 import User from './User'
 
 const UserContainer = (props) => {
-    // console.log(props)
     return (
         <div>
             <Switch>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Review from './Review'
 
 class User extends React.Component{
 
@@ -21,9 +22,10 @@ class User extends React.Component{
                 {this.state.user ?
                     <div>
                         <h1>{this.state.user.name}</h1>
-                        <h3>Has {this.state.user.reviews.length} reviews</h3>
                         <img src={this.state.user.image} alt='chicken' />
                         <p>{this.state.user.bio}</p>
+                        <h3>Has {this.state.user.reviews.length} reviews</h3>
+                        {this.state.user.reviews.map(review => <Review key={review.id} review={review} />)}
                     </div>
                     :
                     <h1>LOADING...</h1>
