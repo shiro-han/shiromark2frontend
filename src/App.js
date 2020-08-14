@@ -7,7 +7,7 @@ import UserContainer from './Components/UserContainer'
 import AccountContainer from './Components/AccountContainer'
 import RestaurantContainer from './Components/RestaurantContainer'
 import Signup from './Components/Signup'
-import Profile from './Components/Profile'
+import ProfileContainer from './Components/ProfileContainer'
 
 
 
@@ -86,7 +86,7 @@ class App extends React.Component {
           <Route path="/users" render={routerProps => <UserContainer {...routerProps}/> } />
           <Route path="/login" render={() => <AccountContainer loginHandler={this.loginHandler} /> } />
           <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} /> } />
-          <Route path="/profile" render={() => <Profile user={this.state.user} /> } />
+          <Route path="/profile" render={routerProps => <ProfileContainer {...routerProps} user={this.state.user} /> } />
           <Route path="/" render={() => <Home /> } />
         </Switch>
       </>
