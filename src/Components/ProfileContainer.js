@@ -11,13 +11,15 @@ class ProfileContainer extends React.Component {
         console.log(this.props.match)
         return (
             <>
-                {this.props.user ? 
+                {localStorage.getItem("token") ?
+                    user ?
                     <>
                         <div className="links">
                             <NavLink to={`${this.props.match.url}`}>About</NavLink>
                             <NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
                             {/* <NavLink to={`${this.props.match.url}/following`}>Following</NavLink> */}
-                            <NavLink to={`/users/${user.id}`}>View Public Profile Page</NavLink>
+                            <NavLink to={`/users/${user.id}`}>View Public Profile Page</NavLink> 
+                            
                         </div>
                         <Switch>
                             <Route path={`${this.props.match.url}/reviews`} render={()=> <ProfileReviews user={this.props.user}/>}/>
@@ -25,6 +27,8 @@ class ProfileContainer extends React.Component {
                             {/* <Route path={`${this.props.match.url}/following`} render={()=> <ProfileFollowing />} />                      */}
                         </Switch>
                     </>
+                    :
+                    <h1>LOADING...</h1>
                 :
                     <Redirect to="/login" /> //bug with refreshing and App state here
                 }
@@ -33,6 +37,5 @@ class ProfileContainer extends React.Component {
         )
     }
 }
-
 
 export default ProfileContainer;
