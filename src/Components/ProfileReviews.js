@@ -5,7 +5,7 @@ const ProfileReviews = (props) => {
     console.log(props)
     return (
         <div>
-            hi
+            {props.user.reviews.map(review => <Review review={review} user={props.user}/>)}
         </div>
     )
 }

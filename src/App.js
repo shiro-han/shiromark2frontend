@@ -82,7 +82,7 @@ class App extends React.Component {
       <>
         <NavBar user={this.state.user} logoutHandler={this.logoutHandler}/>
         <Switch>
-          <Route path="/restaurants" render={routerProps => <RestaurantContainer {...routerProps} /> } />
+          <Route path="/restaurants" render={routerProps => <RestaurantContainer {...routerProps} user={this.state.user} /> } />
           <Route path="/users" render={routerProps => <UserContainer {...routerProps}/> } />
           <Route path="/login" render={() => <AccountContainer loginHandler={this.loginHandler} /> } />
           <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} /> } />

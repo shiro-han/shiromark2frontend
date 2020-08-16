@@ -7,8 +7,7 @@ import ProfileForm from './ProfileForm'
 class ProfileContainer extends React.Component {
     
     render(){
-        let user = this.props.user 
-        console.log(this.props.match)
+        let user = this.props.user
         return (
             <>
                 {localStorage.getItem("token") ?

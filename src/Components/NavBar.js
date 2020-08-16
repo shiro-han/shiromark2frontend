@@ -5,6 +5,7 @@ const NavBar = (props) => {
     return (
     <div>
         <NavLink to="/"> Home </NavLink>
+        <NavLink to="/restaurants"> Restaurants </NavLink>
         {props.user ?
             <>
                 {/* <NavLink to={`/users/${props.user.id}`}><button> My Profile {props.user.name} </button> </NavLink>  */}
