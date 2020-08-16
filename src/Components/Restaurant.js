@@ -32,6 +32,8 @@ class Restaurant extends React.Component{
                             <p>Reviews:</p>
                             {restaurant.reviews.map(review => <Review key={review.id} review={review} user={this.props.user}/>)}
                         </div>
+                        <br/>
+                        <h3>Create New Review</h3>
                         <ReviewForm user={this.props.user} restaurant_id={this.props.match.params.restaurantId}/>
                     </>
                     :

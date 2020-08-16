@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+const token = localStorage.getItem("token")
 
 class Review extends React.Component{
 
@@ -14,13 +15,14 @@ class Review extends React.Component{
         this.setState({ [e.target.name]: e.target.value})
     }
     
-    // clickHandler = (e) => {
-    //     fetch(`http://localhost:3000/reviews/${this.props.review.id}`), {
-    //         method: 'DELETE',
-    //         // headers: {Authorization: `Bearer ${token}`}
-    //     }
-    //     .then(window.location.reload())
-    // }
+    deleteFn = (e) => {
+        fetch(`http://localhost:3000/reviews/${this.props.review.id}`, {
+            method: 'DELETE',
+            headers: {Authorization: `Bearer ${token}`}
+        })
+        .then(resp => resp.json())
+        .then(window.location.reload())
+    }
 
     stateChanger = ()=> {
         this.setState({
@@ -37,30 +39,24 @@ class Review extends React.Component{
 
     submitHandler = (e) => {
         e.preventDefault();
-        console.log(typeof this.state.rating, this.props.review)
         let newReview = ({
-            rating: this.state.rating, 
+            rating: parseInt(this.state.rating, 10), 
             title: this.state.title, 
             content: this.state.content, 
             id: this.props.review.id, 
             restaurant_id: this.props.review.restaurant_id, 
             user_id: this.props.review.user_id
         })
-        console.log(newReview)
-        updateReview(newReview)
-        // let newReview = (this.state.title, this.state.content)
-        // newReview.rating = parseInt(newReview.rating, 10)
-        // newReview.user_id = this.props.user.id
-        // newReview.restaurant_id = parseInt(this.props.restaurant_id, 10)
-        // console.log(this.props.review, newReview)
+        this.updateReview(newReview)
     }
 
     updateReview = (newReview) => {
-        fetch(`http://localhost:4000/reviews/${this.props.review.id}`, {
-            method: 'POST',
+        fetch(`http://localhost:3000/reviews/${newReview.id}`, {
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                accepts: 'application/json'
+                accepts: 'application/json',
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({ review: newReview})
         })
@@ -72,30 +68,29 @@ class Review extends React.Component{
         return (
             <div>
                 {this.state.showMode ? 
-                    <>
+                    <div>
                         <h3>{this.props.review.title} | A review for: <NavLink to={`/restaurants/${this.props.review.restaurant_id}`}>{this.props.review.restaurant_name}</NavLink></h3>
                         <h4>by: <NavLink to={`/users/${this.props.review.user_id}`}>{this.props.review.user_name} </NavLink>| Rating: {this.props.review.rating}</h4>
                         <h5>{this.props.review.created_at}</h5>
                         <p>{this.props.review.content}</p>
                         {this.props.user.id === this.props.review.user_id ? 
                             <div>
-                                <button onClick={this.clickHandler}>Delete</button>
+                                <button onClick={this.deleteFn}>Delete</button>
                                 <button onClick={this.stateChanger}>Edit</button>
                             </div>
                         : null}
-                    </>
+                    </div>
                     : 
                         <div>
                             <form onSubmit={this.submitHandler}>
-                                <input onChange={this.changeHandler} name='title'value={this.state.title} />
+                                <input onChange={this.changeHandler} name='title' value={this.state.title} />
                                 <input onChange={this.changeHandler} name='rating' value={this.state.rating} type='number' />
                                 <input onChange={this.changeHandler} name='content' value={this.state.content} />
-                                <input type='submit' value='Submit Review'/>
+                                <button onClick={this.stateChanger}>Cancel Edit</button>
+                                <input type='submit' value='Submit Edit'/>
                             </form>
-                            {/* <ReviewForm /> */}
                         </div>
                     }
-
             </div>
         )
     }
