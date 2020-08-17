@@ -65,6 +65,7 @@ class Review extends React.Component{
     }
 
     render() {
+        console.log(this.props.review)
         return (
             <div>
                 {this.state.showMode ? 
@@ -73,7 +74,7 @@ class Review extends React.Component{
                         <h4>by: <NavLink to={`/users/${this.props.review.user_id}`}>{this.props.review.user_name} </NavLink>| Rating: {this.props.review.rating}</h4>
                         <h5>{this.props.review.created_at}</h5>
                         <p>{this.props.review.content}</p>
-                        {this.props.user.id === this.props.review.user_id ? 
+                        {this.props.current_user && this.props.current_user.id === this.props.review.user_id ? 
                             <div>
                                 <button onClick={this.deleteFn}>Delete</button>
                                 <button onClick={this.stateChanger}>Edit</button>

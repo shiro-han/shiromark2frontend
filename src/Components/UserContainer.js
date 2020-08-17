@@ -6,7 +6,7 @@ const UserContainer = (props) => {
     return (
         <div>
             <Switch>
-                <Route path={`${props.match.url}/:userId`} render={routerProps => <User {...routerProps}/>}/>
+                <Route path={`${props.match.url}/:userId`} render={routerProps => <User {...routerProps} current_user={props.current_user} refreshCurrentUser={props.refreshCurrentUser} />}/>
                 <Route path={`${props.match.url}`} render={() => <h1>UserContainer</h1>}/>
             </Switch>
         </div>

@@ -8,6 +8,7 @@ import AccountContainer from './Components/AccountContainer'
 import RestaurantContainer from './Components/RestaurantContainer'
 import Signup from './Components/Signup'
 import ProfileContainer from './Components/ProfileContainer'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -18,6 +19,10 @@ class App extends React.Component {
   }
 
   componentDidMount(){
+    this.refreshCurrentUser();
+  }
+
+  refreshCurrentUser = () => {
     const token = localStorage.getItem("token") //grabs token that is stored after login 
     if (token) { //if a token exists
       //send token to backend to decrypt, 
@@ -83,7 +88,7 @@ class App extends React.Component {
         <NavBar user={this.state.user} logoutHandler={this.logoutHandler}/>
         <Switch>
           <Route path="/restaurants" render={routerProps => <RestaurantContainer {...routerProps} user={this.state.user} /> } />
-          <Route path="/users" render={routerProps => <UserContainer {...routerProps}/> } />
+          <Route path="/users" render={routerProps => <UserContainer {...routerProps} current_user={this.state.user} refreshCurrentUser={this.refreshCurrentUser} /> } />
           <Route path="/login" render={() => <AccountContainer loginHandler={this.loginHandler} /> } />
           <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} /> } />
           <Route path="/profile" render={routerProps => <ProfileContainer {...routerProps} user={this.state.user} /> } />

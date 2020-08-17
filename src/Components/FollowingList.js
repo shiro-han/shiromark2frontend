@@ -9,7 +9,7 @@ class FollowingList extends React.Component{
         <>
             <h1>FollowingList</h1>
             
-            {this.props.user.following.map(user => <UserPreview user={user} />)}
+            {this.props.user.following.map(user => <UserPreview user={user} inFollowingList={true}/>)}
         </>)
 
     }

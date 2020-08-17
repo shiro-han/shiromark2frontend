@@ -1,21 +1,31 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
+import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap';
 
 const NavBar = (props) => {
     return (
-    <div>
-        <NavLink to="/"> Home </NavLink>
-        <NavLink to="/restaurants"> Restaurants </NavLink>
-        {props.user ?
-            <>
-                {/* <NavLink to={`/users/${props.user.id}`}><button> My Profile {props.user.name} </button> </NavLink>  */}
-                <NavLink to={'/profile'}><button> My Profile </button></NavLink>
-                <button onClick={props.logoutHandler}> Log Out </button>
-            </>
-        :
-            <NavLink to="/login"><button> Log In </button></NavLink>
-        }
-    </div>
+    <Navbar bg='light' fixed="top">
+        <Navbar.Brand href="/">ShiroMark 2</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/restaurants">Restaurants</Nav.Link>
+            {props.user ?
+                <>
+                    <Nav.Link href={'/profile'}> My Profile </Nav.Link>
+                    <Nav.Item> <Nav.Link onClick={props.logoutHandler}> Log Out </Nav.Link>  </Nav.Item>
+                </>
+            :
+                <Nav.Link href="/login"> Log In </Nav.Link>
+            }
+        </Nav>
+        <Form inline>
+        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+        <Button variant="outline-success">Search</Button>
+        </Form>
+        </Navbar.Collapse>
+    </Navbar>
     )
 }
 

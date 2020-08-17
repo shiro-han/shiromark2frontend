@@ -4,10 +4,19 @@ const token = localStorage.getItem("token")
 class UserPreview extends React.Component {
     constructor(props) {
         super(props);
+        if (props.inFollowingList) {
             this.state = {
                 following: true
             }
-        console.log(props.mutualBool)
+        } else if (props.mutualBool) {
+            this.state = {
+                following: true
+            }
+        } else {
+            this.state = {
+                following: false
+            }
+        }
     }
     
 
@@ -43,6 +52,7 @@ class UserPreview extends React.Component {
     }
 
     render(){
+        console.log(this.props)
         return (
         <div>
             {this.props.user.name}
