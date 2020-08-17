@@ -2,6 +2,8 @@ import React from 'react'
 import {Route, Redirect, NavLink, Switch} from 'react-router-dom'
 import ProfileReviews from './ProfileReviews'
 import ProfileForm from './ProfileForm'
+import FollowingList from './FollowingList'
+import FollowersList from './FollowersList'
 
 
 class ProfileContainer extends React.Component {
@@ -16,14 +18,16 @@ class ProfileContainer extends React.Component {
                         <div className="links">
                             <NavLink to={`${this.props.match.url}`}>About</NavLink>
                             <NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
-                            {/* <NavLink to={`${this.props.match.url}/following`}>Following</NavLink> */}
+                            <NavLink to={`${this.props.match.url}/following`}>Following</NavLink>
+                            <NavLink to={`${this.props.match.url}/followers`}>Followers</NavLink>
                             <NavLink to={`/users/${user.id}`}>View Public Profile Page</NavLink> 
                             
                         </div>
                         <Switch>
                             <Route path={`${this.props.match.url}/reviews`} render={()=> <ProfileReviews user={this.props.user}/>}/>
+                            <Route path={`${this.props.match.url}/following`} render={()=> <FollowingList user={this.props.user}/>} />
+                            <Route path={`${this.props.match.url}/followers`} render={()=> <FollowersList user={this.props.user}/>} />
                             <Route path={`${this.props.match.url}`} render={() => <ProfileForm user={this.props.user}/>} />
-                            {/* <Route path={`${this.props.match.url}/following`} render={()=> <ProfileFollowing />} />                      */}
                         </Switch>
                     </>
                     :

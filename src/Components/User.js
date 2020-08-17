@@ -14,7 +14,6 @@ class User extends React.Component{
     componentDidMount(){
         this.fetchUser(this.props.match.params.userId)
     }
-    
 
     render() {
         return (
