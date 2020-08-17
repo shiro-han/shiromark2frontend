@@ -7,7 +7,7 @@ class UserPreview extends React.Component {
             this.state = {
                 following: true
             }
-        console.log(props.mutualFollow)
+        console.log(props.mutualBool)
     }
     
 
