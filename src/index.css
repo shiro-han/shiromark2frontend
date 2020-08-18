@@ -38,3 +38,7 @@ div.social-container {
   
 }
 
+.text-center:hover {
+  background-color: darkgrey;
+}
+
