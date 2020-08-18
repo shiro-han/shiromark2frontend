@@ -1,6 +1,6 @@
 import React from 'react'
+import {Form, Button, Modal} from 'react-bootstrap'
 const token = localStorage.getItem("token")
-
 
 class ProfileForm extends React.Component{
 

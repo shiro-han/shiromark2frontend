@@ -1,8 +1,5 @@
 import React from 'react'
 import {Route, Redirect, NavLink, Switch} from 'react-router-dom'
-import ProfileForm from './ProfileForm'
-import FollowingList from './FollowingList'
-import FollowersList from './FollowersList'
 import { Nav, Navbar, Container, Grid, Row, Col } from 'react-bootstrap'
 
 
@@ -44,9 +41,6 @@ class ProfileContainer extends React.Component {
                                         <NavLink to={`${this.props.match.url}/followers`}>Followers</NavLink>
                                         <NavLink to={`/users/${user.id}`}>View Public Profile Page</NavLink>  */}
                                 
-                        <Switch>
-                            <Route path={`${this.props.match.url}`} render={() => <ProfileForm user={this.props.user}/>} />
-                        </Switch>
                     </>
                     :
                     <h1>LOADING...</h1>
