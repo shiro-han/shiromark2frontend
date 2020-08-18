@@ -25,7 +25,7 @@ class Restaurant extends React.Component{
         return (
         
             <>
-                {this.state.restaurant && this.props.user ? 
+                {this.state.restaurant ? 
                     <>
                         <div>
                             <h1>{restaurant.name}</h1>

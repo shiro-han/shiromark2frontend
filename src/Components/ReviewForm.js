@@ -54,7 +54,7 @@ class ReviewForm extends React.Component {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Rating</Form.Label>
-                    <Form.Control onChange={this.changeHandler} name='rating' value={this.state.rating} type='number' />
+                    <Form.Control onChange={this.changeHandler} name='rating' value={this.state.rating} type='number' min="1" max="5" />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Content</Form.Label>
