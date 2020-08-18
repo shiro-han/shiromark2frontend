@@ -1,6 +1,7 @@
 import React from 'react'
 import CommentContainer from './CommentContainer'
 import { NavLink } from 'react-router-dom'
+import { Media, Card, Modal, Button, Form } from 'react-bootstrap'
 const token = localStorage.getItem("token")
 
 class Review extends React.Component{
@@ -69,9 +70,16 @@ class Review extends React.Component{
         return (
             <div>
                 {this.state.showMode ? 
-                    <div>
+                    <Media>
+                        <Card style={{ width: '8rem' }}>
+                            <Card.Img variant="top" src={this.props.review.user_image} />
+                            <Card.Body>
+                                <Card.Title><NavLink to={`/users/${this.props.review.user_id}`}>{this.props.review.user_name} </NavLink></Card.Title>
+                            </Card.Body>
+                            </Card>
+                        <Media.Body>
                         <h3>{this.props.review.title} | A review for: <NavLink to={`/restaurants/${this.props.review.restaurant_id}`}>{this.props.review.restaurant_name}</NavLink></h3>
-                        <h4>by: <NavLink to={`/users/${this.props.review.user_id}`}>{this.props.review.user_name} </NavLink>| Rating: {this.props.review.rating}</h4>
+                        <h4>Rating: {this.props.review.rating}</h4>
                         <h5>{this.props.review.created_at}</h5>
                         {this.props.current_user && this.props.current_user.id === this.props.review.user_id ? 
                             <div>
@@ -81,16 +89,33 @@ class Review extends React.Component{
                         : null}
                         <p>{this.props.review.content}</p>
                         <CommentContainer review_id={this.props.review.id} comments={this.props.review.comments} current_user={this.props.current_user} fetchRestaurant={() => this.props.fetchRestaurant(this.props.review.restaurant_id)} />
-                    </div>
+                        </Media.Body>
+                    </Media>
                     : 
+                        
                         <div>
-                            <form onSubmit={this.submitHandler}>
-                                <input onChange={this.changeHandler} name='title' value={this.state.title} />
-                                <input onChange={this.changeHandler} name='rating' value={this.state.rating} type='number' />
-                                <input onChange={this.changeHandler} name='content' value={this.state.content} />
-                                <button onClick={this.stateChanger}>Cancel Edit</button>
-                                <input type='submit' value='Submit Edit'/>
-                            </form>
+                            <Modal show={!this.state.showMode} onHide={this.stateChanger}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Editing Your Review</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <form onSubmit={this.submitHandler}>
+                                    <input onChange={this.changeHandler} name='title' value={this.state.title} />
+                                    <input onChange={this.changeHandler} name='rating' value={this.state.rating} type='number' />
+                                    <input onChange={this.changeHandler} name='content' value={this.state.content} />
+                                    <input type='submit' value='Submit Edit'/>
+                                    </form>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                <Button variant="secondary" onClick={this.stateChanger}>
+                                    Close
+                                </Button>
+                                <Button variant="primary" onClick={this.stateChanger}>
+                                    Save Changes
+                                </Button>
+                                </Modal.Footer>
+                            </Modal>   
+                            
                         </div>
                     }
             </div>

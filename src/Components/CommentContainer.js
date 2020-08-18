@@ -1,4 +1,5 @@
 import React from 'react'
+import {Media} from 'react-bootstrap'
 const token = localStorage.getItem("token")
 
 class CommentContainer extends React.Component {
@@ -40,7 +41,17 @@ class CommentContainer extends React.Component {
         return(
         <>
             <h6>Comments: </h6>
-            {this.props.comments.map(comment => <div>{comment.content} by {comment.user_name}</div>)}
+            {this.props.comments.map(comment => <Media>
+                <img
+                    width={64}
+                    height={64}
+                    className="mr-3"
+                    src={comment.user_image}
+                    alt="Generic placeholder"
+                />
+                {comment.user_name}
+                <Media.Body><p>{comment.content}</p></Media.Body>
+                </Media>)}
             <form onSubmit={this.submitHandler}>
                 <input onChange={(e) => this.setState({content: e.target.value})} value={this.state.content} placeholder='Your comment here' type='textarea' />
                 <input value='Add Comment' type='submit' />

@@ -1,6 +1,7 @@
 import React from 'react'
 import Review from './Review'
 import ReviewForm from './ReviewForm'
+import {Carousel} from 'react-bootstrap'
 
 class Restaurant extends React.Component{
 
@@ -29,6 +30,15 @@ class Restaurant extends React.Component{
                         <div>
                             <h1>{restaurant.name}</h1>
                             <p>Phone: {restaurant.phone}</p>
+                            <Carousel>
+                                {restaurant.photos.map(photo => <Carousel.Item key={restaurant.photos.indexOf(photo)}>
+                                    <img
+                                    className="d-block w-100 carouselImg"
+                                    src={photo}
+                                    alt={'Photo ' + (restaurant.photos.indexOf(photo) + 1)}
+                                    />
+                                </Carousel.Item>)}
+                            </Carousel>
                             <p>Reviews:</p>
                             {restaurant.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.user} fetchRestaurant={this.fetchRestaurant}/>)}
                         </div>

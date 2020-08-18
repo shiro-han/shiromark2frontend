@@ -22,7 +22,6 @@ class RestaurantContainer extends React.Component {
     render(){
         return (
             <div>
-                <h1>RestaurantContainer</h1>
                 <Switch>
                     <Route path={`${this.props.match.url}/:restaurantId`} render={routerProps => <Restaurant {...routerProps} user={this.props.user}/>}/>
                     <Route path={`${this.props.match.url}`} render={() => {
