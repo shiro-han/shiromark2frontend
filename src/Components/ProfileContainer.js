@@ -4,6 +4,7 @@ import ProfileReviews from './ProfileReviews'
 import ProfileForm from './ProfileForm'
 import FollowingList from './FollowingList'
 import FollowersList from './FollowersList'
+import { Nav, Navbar, Container } from 'react-bootstrap'
 
 
 class ProfileContainer extends React.Component {
@@ -15,23 +16,36 @@ class ProfileContainer extends React.Component {
                 {localStorage.getItem("token") ?
                     user ?
                     <>
-                        <nav className="profile-menu">
-                            
-                                {/* <NavLink to={`${this.props.match.url}`}>About</NavLink>
-                                <NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
-                                <NavLink to={`${this.props.match.url}/following`}>Following</NavLink>
-                                <NavLink to={`${this.props.match.url}/followers`}>Followers</NavLink>
-                                <NavLink to={`/users/${user.id}`}>View Public Profile Page</NavLink>  */}
+                        {/* <nav className="profile-menu">
                                 <a href={`${this.props.match.url}`}>About</a>
                                 <a href={`${this.props.match.url}/reviews`}>Reviews</a>
                                 <a href={`${this.props.match.url}/following`}>Following</a>
                                 <a href={`${this.props.match.url}/followers`}>Followers</a>
                                 <a href={`/users/${user.id}`}>View Public Page</a>
-                            <div className="animation start-home">
-                            </div>
+                                <div className="animation start-home">
+                                </div>
+                            </nav> */}
                             
-                            
-                        </nav>
+                            <Navbar bg='light' variant="light" >
+                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                                <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
+                                <Container>
+                                    <Nav className="profile">
+                                        <Nav.Link href={`${this.props.match.url}`}>About</Nav.Link>
+                                        <Nav.Link href={`${this.props.match.url}/reviews`}>Reviews</Nav.Link>
+                                        <Nav.Link href={`${this.props.match.url}/following`}>Following</Nav.Link>
+                                        <Nav.Link href={`${this.props.match.url}/followers`}>Followers</Nav.Link>
+                                        <Nav.Link href={`/users/${user.id}`}>View Public Page</Nav.Link>
+                           
+                                    </Nav>
+                                </Container>
+                            </Navbar>
+                                         {/* <NavLink to={`${this.props.match.url}`}>About</NavLink>
+                                        <NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
+                                        <NavLink to={`${this.props.match.url}/following`}>Following</NavLink>
+                                        <NavLink to={`${this.props.match.url}/followers`}>Followers</NavLink>
+                                        <NavLink to={`/users/${user.id}`}>View Public Profile Page</NavLink>  */}
+                                
                         <Switch>
                             <Route path={`${this.props.match.url}/reviews`} render={()=> <ProfileReviews user={this.props.user}/>}/>
                             <Route path={`${this.props.match.url}/following`} render={()=> <FollowingList user={this.props.user}/>} />
