@@ -1,4 +1,6 @@
 import React from 'react'
+const token = localStorage.getItem("token")
+
 
 class ProfileForm extends React.Component{
 
@@ -25,7 +27,8 @@ class ProfileForm extends React.Component{
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                accepts: 'application/json'
+                accepts: 'application/json',
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({ user: userObj})
         })

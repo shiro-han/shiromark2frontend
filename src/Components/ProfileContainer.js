@@ -15,12 +15,18 @@ class ProfileContainer extends React.Component {
                 {localStorage.getItem("token") ?
                     user ?
                     <>
-                        <div className="links">
-                            <NavLink to={`${this.props.match.url}`}>About</NavLink>
-                            <NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
-                            <NavLink to={`${this.props.match.url}/following`}>Following</NavLink>
-                            <NavLink to={`${this.props.match.url}/followers`}>Followers</NavLink>
-                            <NavLink to={`/users/${user.id}`}>View Public Profile Page</NavLink> 
+                        <div className="skew-menu">
+                            <ul>
+                                {/* <NavLink to={`${this.props.match.url}`}>About</NavLink>
+                                <NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
+                                <NavLink to={`${this.props.match.url}/following`}>Following</NavLink>
+                                <NavLink to={`${this.props.match.url}/followers`}>Followers</NavLink>
+                                <NavLink to={`/users/${user.id}`}>View Public Profile Page</NavLink>  */}
+                                <li><a href={`${this.props.match.url}`}>About</a></li>
+                                <li><a href={`${this.props.match.url}/reviews`}>Reviews</a></li>
+                                <li><a href={`${this.props.match.url}/following`}>Following</a></li>
+                                <li><a href={`${this.props.match.url}/followers`}>Followers</a></li>
+                            </ul>
                             
                         </div>
                         <Switch>
