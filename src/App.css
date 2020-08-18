@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.carousel {
+  width:900px;
+  height:500px;
+  margin: auto;
+}
+
+img.carouselImg {
+  object-fit: cover;
+  width:900px;
+  height:500px;
+}
+
+.linkNotBlue {
+  color: white;
+}

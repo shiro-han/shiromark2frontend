@@ -1,6 +1,7 @@
 import React from 'react'
 import Review from './Review'
 import {Carousel} from 'react-bootstrap'
+import {NavLink} from 'react-router-dom'
 
 const token = localStorage.getItem("token") //grabs token that is stored after login 
 
@@ -31,36 +32,41 @@ class Home extends React.Component {
                 <Carousel>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
+                        className="d-block w-100 carouselImg"
                         src="https://s3-media2.fl.yelpcdn.com/bphoto/JOL0dtGJ5kNc5_u_B9FfAA/o.jpg"
                         alt="First slide"
                         />
                         <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <NavLink to={'/restaurants/6'} className='linkNotBlue' >
+                                <h3>Jacob's Pickles</h3>
+                                <p>509 Amsterdam Ave | New York, NY 10024</p>
+                            </NavLink>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
-                        src="holder.js/800x400?text=Second slide&bg=282c34"
-                        alt="Third slide"
+                        className="d-block w-100 carouselImg"
+                        src="https://s3-media3.fl.yelpcdn.com/bphoto/7rgKgSe5XY3Oc-pG4I6q0g/o.jpg"
+                        alt="Second slide"
                         />
                         <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <NavLink to={'/restaurants/16'} className='linkNotBlue' >
+                                <h3>Her Name is Han</h3>
+                                <p>17 E 31st St | New York, NY 10016</p>
+                            </NavLink>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
-                        src="holder.js/800x400?text=Third slide&bg=20232a"
+                        className="d-block w-100 carouselImg"
+                        src="https://s3-media2.fl.yelpcdn.com/bphoto/qjmbKKwGxgSrwjeycOG6wg/o.jpg"
                         alt="Third slide"
                         />
-
                         <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            <NavLink to={'/restaurants/22'} className='linkNotBlue' >
+                                <h3>JSalaThai Restaurant</h3>
+                                <p>307 Amsterdam Ave | New York, NY 10023</p>
+                            </NavLink>
                         </Carousel.Caption>
                     </Carousel.Item>
                     </Carousel>
