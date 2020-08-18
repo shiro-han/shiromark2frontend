@@ -10,7 +10,9 @@ let followBool
 class User extends React.Component{
 
     state = {
-        user: null
+        user: null,
+        showFollowing: false,
+        showFollowers: false
     }
 
     fetchUser = (id) => {
@@ -58,6 +60,21 @@ class User extends React.Component{
         this.fetchUser(this.props.match.params.userId)
     }
 
+    showFollowers = () => {
+        this.setState({showFollowers: true})
+    }
+
+    showFollowing = () => {
+        this.setState({showFollowing: true})
+    }
+
+    closeModals = () => {
+        this.setState({
+            showFollowers: false,
+            showFollowing: false
+        })
+    }
+
 
     render() {
         if (token) {
@@ -93,31 +110,30 @@ class User extends React.Component{
                             <p>{this.state.user.bio}</p>
                             <CardGroup>
                                 <Card style={{ width: '6rem'}} className="text-center">
-                                    <Card.Body>
+                                    <Card.Body onClick={this.showFollowing}>
                                         <h3><Card.Title>Following</Card.Title>
-                                        <NavLink to={`${this.props.match.url}/following`} >{this.state.user.following.length}</NavLink></h3>
+                                            {this.state.user.following.length}
+                                        </h3>
                                     </Card.Body>
                                 </Card>
                                 <Card style={{ width: '10rem'}} className="text-center">
-                                    <Card.Body>
-                                        <h3><Card.Title>Followers</Card.Title>
-                                        <NavLink to={`${this.props.match.url}/followers`} >{this.state.user.followers.length}</NavLink></h3>
+                                    <Card.Body onClick={this.showFollowers}>
+                                        <h3>
+                                            <Card.Title>Followers</Card.Title>
+                                            {this.state.user.followers.length}
+                                        </h3>
                                     </Card.Body>
                                 </Card>
                             </CardGroup>
-                          
                             <h3>Has {this.state.user.reviews.length} reviews</h3>
                             {this.state.user.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.current_user} /> )}
                         </div>
-
+                        <FollowingList user={this.state.user} show={this.state.showFollowing} closeModals={this.closeModals}/>
+                        <FollowersList user={this.state.user} show={this.state.showFollowers} closeModals={this.closeModals}/>
                     </Container>
                     :
                     <h1>LOADING...</h1>
                 }
-                <Switch>
-                    <Route path={`${this.props.match.url}/following`} render={()=> <FollowingList user={this.state.user}/>} />
-                    <Route path={`${this.props.match.url}/followers`} render={()=> <FollowersList user={this.state.user}/>} />
-                </Switch>
             </>
         )
     }

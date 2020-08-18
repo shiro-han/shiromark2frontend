@@ -1,5 +1,6 @@
 import React from 'react';
 import UserPreview from './UserPreview'
+import {Modal, Button} from 'react-bootstrap'
 
 const token = localStorage.getItem("token")
 
@@ -12,10 +13,19 @@ class FollowersList extends React.Component{
         console.log('Mutuals: ', mutuals)
         
         return(
-        <>
-            <h1 class="profile-title">Followers</h1>
-            {this.props.user.followers.map(follower_user => <UserPreview user={follower_user} inFollowingList={false} mutualBool={mutual_ids.includes(follower_user.user_id)} /> )}
-        </>)
+        <Modal show={this.props.show}>
+            <Modal.Header>
+                <Modal.Title>Followers</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {this.props.user.followers.map(follower_user => <UserPreview user={follower_user} inFollowingList={false} mutualBool={mutual_ids.includes(follower_user.user_id)} /> )}
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={this.props.closeModals}>
+                    Close
+                </Button>
+            </Modal.Footer>
+        </Modal>)
 
     }
 }
