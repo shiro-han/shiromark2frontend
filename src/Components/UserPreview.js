@@ -52,11 +52,11 @@ class UserPreview extends React.Component {
     }
 
     render(){
-        console.log(this.props)
+        console.log(this.props.user)
         return (
-        <div>
+        <div class="social-container">
             {this.props.user.name}
-            <button onClick={this.buttonHandler}>{this.state.following ? "UnFollow" : "Follow"}</button> 
+            <button type="button" class="btn btn-outline-primary" onClick={this.buttonHandler}>{this.state.following ? "UnFollow" : "Follow"}</button> 
         </div>
         )
     }

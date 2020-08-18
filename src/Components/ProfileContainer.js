@@ -4,7 +4,7 @@ import ProfileReviews from './ProfileReviews'
 import ProfileForm from './ProfileForm'
 import FollowingList from './FollowingList'
 import FollowersList from './FollowersList'
-import { Nav, Navbar, Container } from 'react-bootstrap'
+import { Nav, Navbar, Container, Grid, Row, Col } from 'react-bootstrap'
 
 
 class ProfileContainer extends React.Component {

@@ -13,7 +13,7 @@ class FollowersList extends React.Component{
         
         return(
         <>
-            <h1>Followers List</h1>
+            <h1 class="profile-title">Followers</h1>
             {this.props.user.followers.map(follower_user => <UserPreview user={follower_user} inFollowingList={false} mutualBool={mutual_ids.includes(follower_user.user_id)} /> )}
         </>)
 

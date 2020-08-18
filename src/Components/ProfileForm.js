@@ -45,7 +45,7 @@ class ProfileForm extends React.Component{
     render() {
         return (
             <div>
-                <h1>Edit Profile</h1>
+                <h1 class="profile-title">Edit Profile</h1>
                 <form onSubmit={this.submitHandler} >
                     <label>Username </label>
                     <input onChange={this.changeHandler} value={this.state.username}  name='username' type='text' />

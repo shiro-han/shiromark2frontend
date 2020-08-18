@@ -2,7 +2,8 @@ import React from 'react'
 import Review from './Review'
 import FollowingList from './FollowingList'
 import FollowersList from './FollowersList'
-import {Switch, Route, NavLink} from 'react-router-dom'
+import {Switch, Route, NavLink, Redirect} from 'react-router-dom'
+import {Button, Container, Row, Col, Image, Card, Nav, CardGroup} from 'react-bootstrap'
 const token = localStorage.getItem("token")
 let followBool
 
@@ -57,6 +58,7 @@ class User extends React.Component{
         this.fetchUser(this.props.match.params.userId)
     }
 
+
     render() {
         if (token) {
             if (this.props.current_user && this.state.user) {
@@ -64,21 +66,51 @@ class User extends React.Component{
                 followBool = follow_ids.includes(this.state.user.id)
             }
         }
+        console.log("the user", this.state.user) 
+        console.log("current user", this.props.current_user)
         
         return (
             <>
                 {this.state.user ?
-                    <div>
-                        <h1>{this.state.user.name} {this.props.current_user ?
-                        <button onClick={this.buttonHandler}>{followBool ? "UnFollow" : "Follow"}</button>
-                        : 'NOT LOGGED IN'}</h1>
-                        <img src={this.state.user.image} alt='chicken' />
-                        <p>{this.state.user.bio}</p>
-                        <h3><NavLink to={`${this.props.match.url}/following`} >Following: {this.state.user.following.length}</NavLink></h3>
-                        <h3><NavLink to={`${this.props.match.url}/followers`} >Followers: {this.state.user.followers.length}</NavLink></h3>
-                        <h3>Has {this.state.user.reviews.length} reviews</h3>
-                        {this.state.user.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.current_user} /> )}
-                    </div>
+                    <Container>
+
+                        <div>
+                            <h1>{this.state.user.name} 
+                            {this.props.current_user ?
+                                this.state.user.id === this.props.current_user.id ? 
+                                    // <Button onClick={this.redirect} variant="primary" id="edit-profile">Edit Profile</Button>
+                                    <NavLink to="/profile">Edit Profile </NavLink>
+                                :
+                                    <button onClick={this.buttonHandler}>{followBool ? "UnFollow" : "Follow"}</button>
+                            : 
+                                null
+                            }</h1>
+                            <Row>
+                                <Col xs={6} md={4}>
+                                    <Image src={this.state.user.image} alt='chicken' roundedCircle />
+                                </Col>
+                            </Row>
+                            <p>{this.state.user.bio}</p>
+                            <CardGroup>
+                                <Card style={{ width: '6rem'}} className="text-center">
+                                    <Card.Body>
+                                        <h3><Card.Title>Following</Card.Title>
+                                        <NavLink to={`${this.props.match.url}/following`} >{this.state.user.following.length}</NavLink></h3>
+                                    </Card.Body>
+                                </Card>
+                                <Card style={{ width: '10rem'}} className="text-center">
+                                    <Card.Body>
+                                        <h3><Card.Title>Followers</Card.Title>
+                                        <NavLink to={`${this.props.match.url}/followers`} >{this.state.user.followers.length}</NavLink></h3>
+                                    </Card.Body>
+                                </Card>
+                            </CardGroup>
+                          
+                            <h3>Has {this.state.user.reviews.length} reviews</h3>
+                            {this.state.user.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.current_user} /> )}
+                        </div>
+
+                    </Container>
                     :
                     <h1>LOADING...</h1>
                 }
