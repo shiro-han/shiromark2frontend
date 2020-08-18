@@ -30,7 +30,7 @@ class Restaurant extends React.Component{
                             <h1>{restaurant.name}</h1>
                             <p>Phone: {restaurant.phone}</p>
                             <p>Reviews:</p>
-                            {restaurant.reviews.map(review => <Review key={review.id} review={review} user={this.props.user}/>)}
+                            {restaurant.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.user} fetchRestaurant={this.fetchRestaurant}/>)}
                         </div>
                         <br/>
                         <h3>Create New Review</h3>

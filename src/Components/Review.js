@@ -1,4 +1,5 @@
 import React from 'react'
+import CommentContainer from './CommentContainer'
 import { NavLink } from 'react-router-dom'
 const token = localStorage.getItem("token")
 
@@ -65,7 +66,6 @@ class Review extends React.Component{
     }
 
     render() {
-        console.log(this.props.review)
         return (
             <div>
                 {this.state.showMode ? 
@@ -73,13 +73,14 @@ class Review extends React.Component{
                         <h3>{this.props.review.title} | A review for: <NavLink to={`/restaurants/${this.props.review.restaurant_id}`}>{this.props.review.restaurant_name}</NavLink></h3>
                         <h4>by: <NavLink to={`/users/${this.props.review.user_id}`}>{this.props.review.user_name} </NavLink>| Rating: {this.props.review.rating}</h4>
                         <h5>{this.props.review.created_at}</h5>
-                        <p>{this.props.review.content}</p>
                         {this.props.current_user && this.props.current_user.id === this.props.review.user_id ? 
                             <div>
                                 <button onClick={this.deleteFn}>Delete</button>
                                 <button onClick={this.stateChanger}>Edit</button>
                             </div>
                         : null}
+                        <p>{this.props.review.content}</p>
+                        <CommentContainer review_id={this.props.review.id} comments={this.props.review.comments} current_user={this.props.current_user} fetchRestaurant={() => this.props.fetchRestaurant(this.props.review.restaurant_id)} />
                     </div>
                     : 
                         <div>
