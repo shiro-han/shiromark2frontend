@@ -15,20 +15,23 @@ class ProfileContainer extends React.Component {
                 {localStorage.getItem("token") ?
                     user ?
                     <>
-                        <div className="skew-menu">
-                            <ul>
+                        <nav className="profile-menu">
+                            
                                 {/* <NavLink to={`${this.props.match.url}`}>About</NavLink>
                                 <NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
                                 <NavLink to={`${this.props.match.url}/following`}>Following</NavLink>
                                 <NavLink to={`${this.props.match.url}/followers`}>Followers</NavLink>
                                 <NavLink to={`/users/${user.id}`}>View Public Profile Page</NavLink>  */}
-                                <li><a href={`${this.props.match.url}`}>About</a></li>
-                                <li><a href={`${this.props.match.url}/reviews`}>Reviews</a></li>
-                                <li><a href={`${this.props.match.url}/following`}>Following</a></li>
-                                <li><a href={`${this.props.match.url}/followers`}>Followers</a></li>
-                            </ul>
+                                <a href={`${this.props.match.url}`}>About</a>
+                                <a href={`${this.props.match.url}/reviews`}>Reviews</a>
+                                <a href={`${this.props.match.url}/following`}>Following</a>
+                                <a href={`${this.props.match.url}/followers`}>Followers</a>
+                                <a href={`/users/${user.id}`}>View Public Page</a>
+                            <div className="animation start-home">
+                            </div>
                             
-                        </div>
+                            
+                        </nav>
                         <Switch>
                             <Route path={`${this.props.match.url}/reviews`} render={()=> <ProfileReviews user={this.props.user}/>}/>
                             <Route path={`${this.props.match.url}/following`} render={()=> <FollowingList user={this.props.user}/>} />
