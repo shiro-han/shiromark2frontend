@@ -63,61 +63,62 @@ class Review extends React.Component{
             body: JSON.stringify({ review: newReview})
         })
         .then(resp => resp.json())
-        .then(console.log)
+        .then(data => window.location.reload())
     }
 
     render() {
         return (
             <div>
-                {this.state.showMode ? 
-                    <Media>
-                        <Card style={{ width: '8rem' }}>
-                            <Card.Img variant="top" src={this.props.review.user_image} />
-                            <Card.Body>
-                                <Card.Title><NavLink to={`/users/${this.props.review.user_id}`}>{this.props.review.user_name} </NavLink></Card.Title>
-                            </Card.Body>
-                            </Card>
-                        <Media.Body>
-                        <h3>{this.props.review.title} | A review for: <NavLink to={`/restaurants/${this.props.review.restaurant_id}`}>{this.props.review.restaurant_name}</NavLink></h3>
-                        <h4>Rating: {this.props.review.rating}</h4>
-                        <h5>{this.props.review.created_at}</h5>
-                        {this.props.current_user && this.props.current_user.id === this.props.review.user_id ? 
-                            <div>
-                                <button onClick={this.deleteFn}>Delete</button>
-                                <button onClick={this.stateChanger}>Edit</button>
-                            </div>
-                        : null}
-                        <p>{this.props.review.content}</p>
-                        <CommentContainer review_id={this.props.review.id} comments={this.props.review.comments} current_user={this.props.current_user} fetchRestaurant={() => this.props.fetchRestaurant(this.props.review.restaurant_id)} />
-                        </Media.Body>
-                    </Media>
-                    : 
-                        
+                <Media>
+                    <Card style={{ width: '8rem' }}>
+                        <Card.Img variant="top" src={this.props.review.user_image} />
+                        <Card.Body>
+                            <Card.Title><NavLink to={`/users/${this.props.review.user_id}`}>{this.props.review.user_name} </NavLink></Card.Title>
+                        </Card.Body>
+                        </Card>
+                    <Media.Body>
+                    <h3>{this.props.review.title} | A review for: <NavLink to={`/restaurants/${this.props.review.restaurant_id}`}>{this.props.review.restaurant_name}</NavLink></h3>
+                    <h4>Rating: {this.props.review.rating}</h4>
+                    <h5>{this.props.review.created_at}</h5>
+                    {this.props.current_user && this.props.current_user.id === this.props.review.user_id ? 
                         <div>
-                            <Modal show={!this.state.showMode} onHide={this.stateChanger}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Editing Your Review</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <form onSubmit={this.submitHandler}>
-                                    <input onChange={this.changeHandler} name='title' value={this.state.title} />
-                                    <input onChange={this.changeHandler} name='rating' value={this.state.rating} type='number' />
-                                    <input onChange={this.changeHandler} name='content' value={this.state.content} />
-                                    <input type='submit' value='Submit Edit'/>
-                                    </form>
-                                </Modal.Body>
-                                <Modal.Footer>
-                                <Button variant="secondary" onClick={this.stateChanger}>
-                                    Close
-                                </Button>
-                                <Button variant="primary" onClick={this.stateChanger}>
-                                    Save Changes
-                                </Button>
-                                </Modal.Footer>
-                            </Modal>   
-                            
+                            <button onClick={this.deleteFn}>Delete</button>
+                            <button onClick={this.stateChanger}>Edit</button>
                         </div>
-                    }
+                    : null}
+                    <p>{this.props.review.content}</p>
+                    <CommentContainer review_id={this.props.review.id} comments={this.props.review.comments} current_user={this.props.current_user} fetchRestaurant={() => this.props.fetchRestaurant(this.props.review.restaurant_id)} />
+                    </Media.Body>
+                </Media>
+                <Modal show={!this.state.showMode} onHide={this.stateChanger}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Editing Your Review</Modal.Title>
+                    </Modal.Header>
+                    <Form onSubmit={this.submitHandler}>
+                        <Modal.Body>
+                            <Form.Group>
+                                <Form.Label>Title</Form.Label>
+                                <Form.Control onChange={this.changeHandler} name='title' value={this.state.title} />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Rating</Form.Label>
+                                <Form.Control onChange={this.changeHandler} name='rating' value={this.state.rating} type='number' min="1" max="5" />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Content</Form.Label>
+                                <Form.Control onChange={this.changeHandler} name='content' value={this.state.content} />
+                            </Form.Group>
+                        </Modal.Body>
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={this.stateChanger}>
+                            Close
+                        </Button>
+                        <Button variant="primary" type='submit'>
+                            Submit Review
+                        </Button>
+                        </Modal.Footer>
+                    </Form>
+                </Modal>
             </div>
         )
     }

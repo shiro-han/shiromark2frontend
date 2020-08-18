@@ -16,7 +16,11 @@ class Signup extends React.Component {
 
     submitHandler = (e) => {
         e.preventDefault()
-        this.props.submitHandler(this.state)
+        let newUser = this.state 
+        if (newUser.image === '') {
+            newUser.image = 'https://i2.wp.com/lawsontravel.com/wp-content/uploads/2017/07/cropped-blank-profile-picture-973460_640.png'
+        }
+        this.props.submitHandler(newUser)
     }
 
     render() {

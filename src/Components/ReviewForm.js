@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form, Button} from 'react-bootstrap'
+const token = localStorage.getItem("token")
 
 class ReviewForm extends React.Component {
     state = {
@@ -14,16 +15,19 @@ class ReviewForm extends React.Component {
 
     submitHandler = (e) => {
         e.preventDefault();
-        let newReview = this.state 
-        newReview.rating = parseInt(newReview.rating, 10)
-        newReview.user_id = this.props.user.id
-        newReview.restaurant_id = parseInt(this.props.restaurant_id, 10)
-        this.fetchHandler(newReview);
+        if (token) {
+            let newReview = this.state;
+            newReview.rating = parseInt(newReview.rating, 10);
+            newReview.user_id = this.props.user.id;
+            newReview.restaurant_id = parseInt(this.props.restaurant_id, 10);
+            this.fetchHandler(newReview);
+        } else {
+            window.alert('You must be logged in to submit a review.')
+        }
+        
     }
 
     fetchHandler = (newReview) => {
-        const token = localStorage.getItem("token")
-        
         fetch(`http://localhost:3000/reviews/`, {
             method: 'POST',
             headers: {
