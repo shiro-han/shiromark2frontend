@@ -73,17 +73,22 @@ class Review extends React.Component{
                     <Card style={{ width: '8rem' }}>
                         <Card.Img variant="top" src={this.props.review.user_image} />
                         <Card.Body>
-                            <Card.Title><NavLink to={`/users/${this.props.review.user_id}`}>{this.props.review.user_name} </NavLink></Card.Title>
+                            <Card.Text className='cardTitleReview'><h6><NavLink to={`/users/${this.props.review.user_id}`}>{this.props.review.user_name} </NavLink></h6></Card.Text>
                         </Card.Body>
-                        </Card>
+                    </Card>
                     <Media.Body>
+                    <h2>Rating:
+                        <span className='stars'>
+                            {Array(this.props.review.rating).fill(0).map(e => <span class="fa fa-star checked"></span>)}
+                            {5 - this.props.review.rating > 0 ? Array(5 - this.props.review.rating).fill(0).map(e => <span class="fa fa-star"></span>) : null}
+                        </span>
+                    </h2>
                     <h3>{this.props.review.title} | A review for: <NavLink to={`/restaurants/${this.props.review.restaurant_id}`}>{this.props.review.restaurant_name}</NavLink></h3>
-                    <h4>Rating: {this.props.review.rating}</h4>
                     <h5>{this.props.review.created_at}</h5>
                     {this.props.current_user && this.props.current_user.id === this.props.review.user_id ? 
                         <div>
-                            <button onClick={this.deleteFn}>Delete</button>
                             <button onClick={this.stateChanger}>Edit</button>
+                            <button onClick={this.deleteFn}>Delete</button>
                         </div>
                     : null}
                     <p>{this.props.review.content}</p>

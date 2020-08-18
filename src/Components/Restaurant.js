@@ -29,7 +29,9 @@ class Restaurant extends React.Component{
                     <>
                         <div>
                             <h1>{restaurant.name}</h1>
-                            <p>Phone: {restaurant.phone}</p>
+                            <h3>Address: {restaurant.location}</h3>
+                            <h4>Phone: {restaurant.phone}</h4>
+                            <h5>Tags: {restaurant.tags.join(', ')}</h5>
                             <Carousel>
                                 {restaurant.photos.map(photo => <Carousel.Item key={restaurant.photos.indexOf(photo)}>
                                     <img
@@ -39,7 +41,7 @@ class Restaurant extends React.Component{
                                     />
                                 </Carousel.Item>)}
                             </Carousel>
-                            <p>Reviews:</p>
+                            <h2>Reviews:</h2>
                             {restaurant.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.user} fetchRestaurant={this.fetchRestaurant}/>)}
                         </div>
                         <br/>

@@ -1,5 +1,6 @@
 import React from 'react'
-import {Media} from 'react-bootstrap'
+import {NavLink} from 'react-router-dom'
+import {Media, Card, Form} from 'react-bootstrap'
 const token = localStorage.getItem("token")
 
 class CommentContainer extends React.Component {
@@ -16,8 +17,10 @@ class CommentContainer extends React.Component {
                 review_id: this.props.review_id
             }
             this.postComment(newComment)
+        } else if (!this.props.current_user){
+            window.alert('You must be logged in to create a comment.')
         } else {
-            window.alert('You must be logged in to create a comment or you must write a comment to submit')
+            window.alert('You must write a comment before submitting it.')
         }
     }
 
@@ -42,14 +45,12 @@ class CommentContainer extends React.Component {
         <>
             <h6>Comments: </h6>
             {this.props.comments.map(comment => <Media>
-                <img
-                    width={64}
-                    height={64}
-                    className="mr-3"
-                    src={comment.user_image}
-                    alt="Generic placeholder"
-                />
-                {comment.user_name}
+                <Card style={{ width: '5rem'}}>
+                        <Card.Img variant="top" src={comment.user_image} />
+                        <Card.Body>
+                            <Card.Text className='cardTitleComment'><NavLink to={`/users/${comment.user_id}`}>{comment.user_name} </NavLink></Card.Text>
+                        </Card.Body>
+                    </Card>
                 <Media.Body><p>{comment.content}</p></Media.Body>
                 </Media>)}
             <form onSubmit={this.submitHandler}>
