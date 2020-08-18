@@ -82,6 +82,7 @@ class App extends React.Component {
     this.setState({ user: null })
   }
 
+
   render() {
     return (
       <>
@@ -92,7 +93,7 @@ class App extends React.Component {
           <Route path="/login" render={() => <AccountContainer loginHandler={this.loginHandler} /> } />
           <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} /> } />
           <Route path="/profile" render={routerProps => <ProfileContainer {...routerProps} user={this.state.user} /> } />
-          <Route path="/" render={() => <Home /> } />
+          <Route path="/" render={() => <Home user={this.state.user}/> } />
         </Switch>
       </>
     )
