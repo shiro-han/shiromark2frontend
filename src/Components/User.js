@@ -133,7 +133,7 @@ class User extends React.Component{
                                 </Card>
                             </CardGroup>
                             <h3>Has {this.state.user.reviews.length} reviews</h3>
-                            {this.state.user.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.current_user} /> )}
+                            {this.state.user.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.current_user} refreshData={this.fetchUser}/> )}
                         </div>
                         <FollowingList user={this.state.user} show={this.state.showFollowing} closeModals={this.closeModals}/>
                         <FollowersList user={this.state.user} show={this.state.showFollowers} closeModals={this.closeModals}/>
