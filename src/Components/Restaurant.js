@@ -49,7 +49,9 @@ class Restaurant extends React.Component{
                         <ReviewForm user={this.props.user} restaurant_id={this.props.match.params.restaurantId}/>
                     </>
                     :
-                    <Spinner animation="border" variant="info" class="spinner"/>
+                    <div class="spinner">
+                        <Spinner animation="border" variant="info" />
+                    </div>
                 }
             </>
         )

@@ -29,7 +29,7 @@ class RestaurantContainer extends React.Component {
                         if (this.state.restaurants) {
                             return this.state.restaurants.map(restaurant => <RestaurantPreview key={restaurant.id} restaurant={restaurant}/>)
                         } else {
-                            return <Spinner animation="border" variant="info" class="spinner" />
+                            return <div class="spinner" ><Spinner animation="border" variant="info" class="spinner" /></div>
 
                         }
                         } }/>

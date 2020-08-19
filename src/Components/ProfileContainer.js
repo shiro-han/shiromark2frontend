@@ -43,7 +43,9 @@ class ProfileContainer extends React.Component {
                                 
                     </>
                     :
-                    <Spinner animation="border" variant="info" />
+                    <div class="spinner">
+                        <Spinner animation="border" variant="info" />
+                    </div>
 
                 :
                     <Redirect to="/login" /> //bug with refreshing and App state here

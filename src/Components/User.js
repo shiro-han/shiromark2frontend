@@ -132,7 +132,9 @@ class User extends React.Component{
                         <FollowersList user={this.state.user} show={this.state.showFollowers} closeModals={this.closeModals}/>
                     </Container>
                     :
-                    <Spinner animation="border" variant="info" class="spinner"/>
+                    <div class="spinner">
+                        <Spinner animation="border" variant="info" />
+                    </div>
 
                 }
             </>

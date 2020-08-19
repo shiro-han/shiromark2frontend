@@ -16,7 +16,9 @@ const RestaurantPreview = (props) => {
                     </Card.Body>
                 </Card>
             :
-                <Spinner animation="border" variant="info" class="spinner" />
+                <div class="spinner">
+                    <Spinner animation="border" variant="info"  />
+                </div>
 
             }
         </>
