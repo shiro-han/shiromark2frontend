@@ -1,6 +1,6 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
-import {Media, Card, Form} from 'react-bootstrap'
+import {Media, Card, Form, Button} from 'react-bootstrap'
 const token = localStorage.getItem("token")
 
 class CommentContainer extends React.Component {
@@ -35,7 +35,7 @@ class CommentContainer extends React.Component {
             body: JSON.stringify({ comment: newComment})
         }).then(resp => resp.json())
         .then(data => {
-            this.props.fetchRestaurant()
+            this.props.refreshData()
             this.setState({content: ''})
         })
     }
@@ -53,10 +53,10 @@ class CommentContainer extends React.Component {
                     </Card>
                 <Media.Body><p>{comment.content}</p></Media.Body>
                 </Media>)}
-            <form onSubmit={this.submitHandler}>
-                <input onChange={(e) => this.setState({content: e.target.value})} value={this.state.content} placeholder='Your comment here' type='textarea' />
-                <input value='Add Comment' type='submit' />
-            </form>
+            <Form onSubmit={this.submitHandler}>
+                <Form.Control onChange={(e) => this.setState({content: e.target.value})} value={this.state.content} placeholder='Your comment here' as='textarea' />
+                <Button type='submit' >Add Comment</Button>
+            </Form>
         </>
         )
     }

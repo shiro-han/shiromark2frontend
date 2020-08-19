@@ -74,11 +74,11 @@ class Home extends React.Component {
                 <div>
                     {this.props.user && this.props.user.following.length > 0 && this.state.reviews.length > 0 ? 
                         <>
-                            {this.filteredReviews().map(review => <Review key={review.id} review={review} user={this.props.user}/>)}
+                            {this.filteredReviews().map(review => <Review key={review.id} review={review} current_user={this.props.user} refreshData={this.fetchReviews}/>)}
                         </>
                     :
                     <>
-                        {this.state.reviews.map(review => <Review key={review.id} review={review} user={this.props.user}/>)}
+                        {this.state.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.user} refreshData={this.fetchReviews} />)}
                     </>
                     }
                 </div>

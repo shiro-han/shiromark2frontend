@@ -50,7 +50,7 @@ class Restaurant extends React.Component{
                             <br/>
                             <br/>
                             {this.state.review ? <ReviewForm user={this.props.user} restaurant_id={this.props.match.params.restaurantId}/> : null}
-                            {restaurant.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.user} fetchRestaurant={this.fetchRestaurant}/>)}
+                            {restaurant.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.user} refreshData={() => this.fetchRestaurant(this.props.match.params.restaurantId)}/>)}
                         </div>
                         <br/>
                         

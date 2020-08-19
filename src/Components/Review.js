@@ -91,8 +91,8 @@ class Review extends React.Component{
                             {5 - this.props.review.rating > 0 ? Array(5 - this.props.review.rating).fill(0).map(e => <span class="fa fa-star"></span>) : null}
                         </span>
                     </h2>
-                    <h3>{this.props.review.title} | A review for: <NavLink to={`/restaurants/${this.props.review.restaurant_id}`}>{this.props.review.restaurant_name}</NavLink></h3>
-                    <h5>{this.props.review.created_at}</h5>
+                    <h3>{this.props.review.title} | Restaurant: <NavLink to={`/restaurants/${this.props.review.restaurant_id}`}>{this.props.review.restaurant_name}</NavLink></h3>
+                    <h5>{this.props.review.created_at.split('T')[0]}</h5>
                     {this.props.current_user && this.props.current_user.id === this.props.review.user_id ? 
                         <div>
                             <button onClick={this.stateChanger}>Edit</button>
@@ -100,7 +100,7 @@ class Review extends React.Component{
                         </div>
                     : null}
                     <p>{this.props.review.content}</p>
-                    <CommentContainer review_id={this.props.review.id} comments={this.props.review.comments} current_user={this.props.current_user} fetchRestaurant={() => this.props.fetchRestaurant(this.props.review.restaurant_id)} />
+                    <CommentContainer review_id={this.props.review.id} comments={this.props.review.comments} current_user={this.props.current_user} refreshData={this.props.refreshData} />
                     </Media.Body>
                 </Media>
                 <Modal show={!this.state.showMode} onHide={this.stateChanger}>
