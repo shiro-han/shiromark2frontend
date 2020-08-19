@@ -6,7 +6,8 @@ class ReviewForm extends React.Component {
     state = {
         title: "",
         content: "",
-        rating: ""
+        rating: "",
+        error: ""
     }
 
     changeHandler = (e) => {
@@ -39,12 +40,16 @@ class ReviewForm extends React.Component {
         })
         .then(resp => resp.json())
         .then(data => {
-            this.setState({
-                title: "",
-                content: "",
-                rating: ""
-            },
-            ()=> window.location.reload())
+            if (data.error) {
+              // console.log(data.error) //will need to display error on page 
+              this.setState({ error: data.error })
+            } else {
+                this.setState({
+                    title: "",
+                    content: "",
+                    rating: ""
+                }, ()=> window.location.reload())
+            } 
         })
 
     }
@@ -64,7 +69,7 @@ class ReviewForm extends React.Component {
                     <Form.Label>Content</Form.Label>
                     <Form.Control onChange={this.changeHandler} name='content' value={this.state.content} />
                 </Form.Group>
-                <Button type='submit'>Submit Review</Button>
+                <Button type='submit'>Submit Review</Button>{this.state.error ? <p class="error-message">{this.state.error}</p> : null}
             </Form>
         )
     }

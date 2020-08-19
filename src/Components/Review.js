@@ -10,7 +10,8 @@ class Review extends React.Component{
         showMode: true,
         title: "",
         content: "",
-        rating: "" 
+        rating: "",
+        error: "" 
     }
 
     changeHandler = (e) => {
@@ -63,7 +64,14 @@ class Review extends React.Component{
             body: JSON.stringify({ review: newReview})
         })
         .then(resp => resp.json())
-        .then(data => window.location.reload())
+        .then(data => {
+            if (data.error) {
+              // console.log(data.error) //will need to display error on page 
+              this.setState({ error: data.error })
+            } else {
+                window.location.reload()
+            }
+        })
     }
 
     render() {
@@ -115,6 +123,7 @@ class Review extends React.Component{
                             </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
+                        {this.state.error ? <p class="error-message">{this.state.error}</p> : null} 
                         <Button variant="secondary" onClick={this.stateChanger}>
                             Close
                         </Button>

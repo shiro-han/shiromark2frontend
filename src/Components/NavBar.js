@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Link} from 'react-router-dom'
 import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap';
 
 const NavBar = (props) => {
@@ -13,7 +13,8 @@ const NavBar = (props) => {
             <Nav.Link href="/restaurants">Restaurants</Nav.Link>
             {props.user ?
                 <>
-                    <Nav.Link href={'/profile'}> My Profile </Nav.Link>
+                    <Nav.Link href={`/users/${props.user.id}`}> My Profile </Nav.Link>
+                    {/* <NavLink to={`/users/${props.user.id}`}>My Profile</NavLink> */}
                     <Nav.Item> <Nav.Link onClick={props.logoutHandler}> Log Out </Nav.Link>  </Nav.Item>
                 </>
             :

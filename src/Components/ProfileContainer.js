@@ -12,15 +12,6 @@ class ProfileContainer extends React.Component {
                 {localStorage.getItem("token") ?
                     user ?
                     <>
-                        {/* <nav className="profile-menu">
-                                <a href={`${this.props.match.url}`}>About</a>
-                                <a href={`${this.props.match.url}/reviews`}>Reviews</a>
-                                <a href={`${this.props.match.url}/following`}>Following</a>
-                                <a href={`${this.props.match.url}/followers`}>Followers</a>
-                                <a href={`/users/${user.id}`}>View Public Page</a>
-                                <div className="animation start-home">
-                                </div>
-                            </nav> */}
                             
                             <Navbar bg='light' variant="light" >
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -35,11 +26,6 @@ class ProfileContainer extends React.Component {
                                     </Nav>
                                 </Container>
                             </Navbar>
-                                         {/* <NavLink to={`${this.props.match.url}`}>About</NavLink>
-                                        <NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
-                                        <NavLink to={`${this.props.match.url}/following`}>Following</NavLink>
-                                        <NavLink to={`${this.props.match.url}/followers`}>Followers</NavLink>
-                                        <NavLink to={`/users/${user.id}`}>View Public Profile Page</NavLink>  */}
                                 
                     </>
                     :
