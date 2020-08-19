@@ -3,7 +3,7 @@ import Review from './Review'
 import FollowingList from './FollowingList'
 import FollowersList from './FollowersList'
 import {Switch, Route, NavLink, Redirect} from 'react-router-dom'
-import {Button, Container, Row, Col, Image, Card, Nav, CardGroup} from 'react-bootstrap'
+import {Button, Container, Row, Col, Image, Card, Nav, CardGroup, Spinner} from 'react-bootstrap'
 const token = localStorage.getItem("token")
 let followBool
 
@@ -132,7 +132,8 @@ class User extends React.Component{
                         <FollowersList user={this.state.user} show={this.state.showFollowers} closeModals={this.closeModals}/>
                     </Container>
                     :
-                    <h1>LOADING...</h1>
+                    <Spinner animation="border" variant="info" class="spinner"/>
+
                 }
             </>
         )

@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import {Card} from 'react-bootstrap'
+import {Card, Spinner} from 'react-bootstrap'
 
 const RestaurantPreview = (props) => {
 
@@ -16,7 +16,8 @@ const RestaurantPreview = (props) => {
                     </Card.Body>
                 </Card>
             :
-                <h1>LOADING...</h1>
+                <Spinner animation="border" variant="info" class="spinner" />
+
             }
         </>
     )

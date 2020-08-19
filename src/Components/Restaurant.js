@@ -1,7 +1,7 @@
 import React from 'react'
 import Review from './Review'
 import ReviewForm from './ReviewForm'
-import {Carousel} from 'react-bootstrap'
+import {Carousel, Spinner} from 'react-bootstrap'
 
 class Restaurant extends React.Component{
 
@@ -49,7 +49,7 @@ class Restaurant extends React.Component{
                         <ReviewForm user={this.props.user} restaurant_id={this.props.match.params.restaurantId}/>
                     </>
                     :
-                    <h1>LOADING...</h1>
+                    <Spinner animation="border" variant="info" class="spinner"/>
                 }
             </>
         )

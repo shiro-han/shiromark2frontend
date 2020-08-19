@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Restaurant from './Restaurant'
 import RestaurantPreview from './RestaurantPreview'
+import {Spinner} from 'react-bootstrap'
 
 class RestaurantContainer extends React.Component {
 
@@ -28,7 +29,8 @@ class RestaurantContainer extends React.Component {
                         if (this.state.restaurants) {
                             return this.state.restaurants.map(restaurant => <RestaurantPreview key={restaurant.id} restaurant={restaurant}/>)
                         } else {
-                            return <h1>LOADING...</h1>
+                            return <Spinner animation="border" variant="info" class="spinner" />
+
                         }
                         } }/>
                 </Switch>

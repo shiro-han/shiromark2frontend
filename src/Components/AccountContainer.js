@@ -6,8 +6,8 @@ const AccountContainer = (props) => {
   
     return (
         <>
-            <Login submitHandler={props.loginHandler}/>
-            <NavLink to="/signup"><p>Don't have an account? Sign up here</p></NavLink>
+            <Login submitHandler={props.loginHandler} error={props.error}/>
+            <NavLink to="/signup"><p id="no-account">Don't have an account? Sign up here</p></NavLink>
             {/* <Signup submitHandler={props.signupHandler} /> */}
             
         </>

@@ -9,13 +9,15 @@ import RestaurantContainer from './Components/RestaurantContainer'
 import Signup from './Components/Signup'
 import ProfileContainer from './Components/ProfileContainer'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Alert} from 'react-bootstrap'
 
 
 
 class App extends React.Component {
 
   state = {
-    user: null 
+    user: null, 
+    error: ""
   }
 
   componentDidMount(){
@@ -47,10 +49,11 @@ class App extends React.Component {
     .then(resp => resp.json())
     .then(data => {
       if (data.error) {
-        console.log(data.error) //will need to display error on page 
+        // console.log(data.error) //will need to display error on page 
+        this.setState({ error: data.error })
       } else {
         localStorage.setItem("token", data.jwt)
-        this.setState({ user: data.user }, ()=> this.props.history.push(`/profile`)) //will want to change this redirect 
+        this.setState({ user: data.user }, ()=> this.props.history.push(`/`)) 
       }
       
     })
@@ -68,10 +71,11 @@ class App extends React.Component {
     .then(resp => resp.json())
     .then(data => {
       if (data.error) {
-        console.log(data.error) //will need to display error on page 
+        // console.log(data.error) //will need to display error on page 
+        this.setState({ error: data.error })
       } else {
         localStorage.setItem("token", data.jwt)
-        this.setState({ user: data.user }, ()=> this.props.history.push(`/profile`)) //will want to change this redirect 
+        this.setState({ user: data.user }, ()=> this.props.history.push(`/`)) 
       }
     })
   }
@@ -79,19 +83,21 @@ class App extends React.Component {
   logoutHandler = () => {
     localStorage.removeItem("token")
     this.props.history.push("/")
+    window.alert("See you again soon!")
     this.setState({ user: null })
   }
 
 
   render() {
+    console.log(this.state.error)
     return (
       <>
         <NavBar user={this.state.user} logoutHandler={this.logoutHandler}/>
         <Switch>
           <Route path="/restaurants" render={routerProps => <RestaurantContainer {...routerProps} user={this.state.user} /> } />
           <Route path="/users" render={routerProps => <UserContainer {...routerProps} current_user={this.state.user} refreshCurrentUser={this.refreshCurrentUser} /> } />
-          <Route path="/login" render={() => <AccountContainer loginHandler={this.loginHandler} /> } />
-          <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} /> } />
+          <Route path="/login" render={() => <AccountContainer loginHandler={this.loginHandler} error={this.state.error}/> } />
+          <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} error={this.state.error}/> } />
           <Route path="/profile" render={routerProps => <ProfileContainer {...routerProps} user={this.state.user} /> } />
           <Route path="/" render={() => <Home user={this.state.user}/> } />
         </Switch>

@@ -34,11 +34,32 @@ Nav.profile > *:hover {
 
 h1.profile-title { color: #ff4411; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px; }
 
-div.social-container {
-  
+div.sign-up {
+  width: 900px; 
+  margin: auto; 
+  margin-top: 90px;
+  padding: 8px;
+  height: 900 px;
+  border-style: solid;
+  border-radius: 5px;
 }
 
 .text-center:hover {
   background-color: darkgrey;
 }
+
+#form-bio {
+  height: 100px;
+}
+
+#no-account {
+  padding-left: 220px;
+  padding-top: 8px;
+}
+
+.spinner {
+  position: "fixed"; top: "50%"; left: "50%"; transform: "translate(-50%, -50%)";
+}
+
+
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route, Redirect, NavLink, Switch} from 'react-router-dom'
-import { Nav, Navbar, Container, Grid, Row, Col } from 'react-bootstrap'
+import { Nav, Navbar, Container, Grid, Row, Col, Spinner } from 'react-bootstrap'
 
 
 class ProfileContainer extends React.Component {
@@ -43,7 +43,8 @@ class ProfileContainer extends React.Component {
                                 
                     </>
                     :
-                    <h1>LOADING...</h1>
+                    <Spinner animation="border" variant="info" />
+
                 :
                     <Redirect to="/login" /> //bug with refreshing and App state here
                 }
