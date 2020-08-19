@@ -10,7 +10,6 @@ class FollowersList extends React.Component{
         let following_ids = this.props.user.following.map(user => user.user_id)
         let mutuals = this.props.user.followers.filter(follower => following_ids.includes(follower.user_id))
         let mutual_ids = mutuals.map(mutual => mutual.user_id)
-        console.log('Mutuals: ', mutuals)
         
         return(
         <Modal show={this.props.show}>

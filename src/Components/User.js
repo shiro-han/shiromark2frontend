@@ -90,8 +90,6 @@ class User extends React.Component{
                 followBool = follow_ids.includes(this.state.user.id)
             }
         }
-        console.log("the user", this.state.user) 
-        console.log("current user", this.props.current_user)
         
         return (
             <>

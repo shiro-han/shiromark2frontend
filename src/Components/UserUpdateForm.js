@@ -37,7 +37,7 @@ class UserUpdateForm extends React.Component{
             if (data.error) {
                 console.log(data.error) //will need to display on page 
             } else {
-                console.log(data) //NEED TO ADD UPDATE IN BACKEND AND DECIDE WHERE TO REROUTE HERE 
+                window.location.reload() //NEED TO ADD UPDATE IN BACKEND AND DECIDE WHERE TO REROUTE HERE 
             }
         })
     }
