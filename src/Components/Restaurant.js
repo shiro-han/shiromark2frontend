@@ -1,12 +1,13 @@
 import React from 'react'
 import Review from './Review'
 import ReviewForm from './ReviewForm'
-import {Carousel, Spinner} from 'react-bootstrap'
+import {Carousel, Spinner, Button} from 'react-bootstrap'
 
 class Restaurant extends React.Component{
 
     state = {
-        restaurant: null 
+        restaurant: null,
+        review: false 
     }
 
     fetchRestaurant = (id) => {
@@ -17,6 +18,10 @@ class Restaurant extends React.Component{
 
     componentDidMount(){
         this.fetchRestaurant(this.props.match.params.restaurantId)
+    }
+
+    reviewClickHandler = () => {
+        this.setState({review: !this.state.review})
     }
 
 
@@ -41,12 +46,14 @@ class Restaurant extends React.Component{
                                     />
                                 </Carousel.Item>)}
                             </Carousel>
-                            <h2>Reviews:</h2>
+                            <h2>Reviews:</h2><Button variant="primary" onClick={this.reviewClickHandler}>Create New Review</Button>{' '}
+                            <br/>
+                            <br/>
+                            {this.state.review ? <ReviewForm user={this.props.user} restaurant_id={this.props.match.params.restaurantId}/> : null}
                             {restaurant.reviews.map(review => <Review key={review.id} review={review} current_user={this.props.user} fetchRestaurant={this.fetchRestaurant}/>)}
                         </div>
                         <br/>
-                        <h3>Create New Review</h3>
-                        <ReviewForm user={this.props.user} restaurant_id={this.props.match.params.restaurantId}/>
+                        
                     </>
                     :
                     <div class="spinner">

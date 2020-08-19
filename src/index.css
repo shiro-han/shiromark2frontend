@@ -67,5 +67,20 @@ div.sign-up {
   position: absolute;
 }
 
+div.review-form {
+  width: 600px; 
+  margin: auto; 
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding: 8px;
+  height: 900 px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+#review-content {
+  height: 100px;
+}
+
 
 

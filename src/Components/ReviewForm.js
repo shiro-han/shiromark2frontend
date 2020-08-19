@@ -56,21 +56,23 @@ class ReviewForm extends React.Component {
 
     render(){
         return(
-            <Form onSubmit={this.submitHandler}>
-                <Form.Group>
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control onChange={this.changeHandler} name='title' value={this.state.title} />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Rating</Form.Label>
-                    <Form.Control onChange={this.changeHandler} name='rating' value={this.state.rating} type='number' min="1" max="5" />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Content</Form.Label>
-                    <Form.Control onChange={this.changeHandler} name='content' value={this.state.content} />
-                </Form.Group>
-                <Button type='submit'>Submit Review</Button>{this.state.error ? <p class="error-message">{this.state.error}</p> : null}
-            </Form>
+            <div class="review-form">
+                <Form onSubmit={this.submitHandler}>
+                    <Form.Group>
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control onChange={this.changeHandler} name='title' value={this.state.title} placeholder="Enter your review title here..."/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Rating</Form.Label>
+                        <Form.Control onChange={this.changeHandler} name='rating' value={this.state.rating} type='number' min="1" max="5" placeholder="Enter your rating from 0-5..."/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Content</Form.Label>
+                        <Form.Control id="review-content" onChange={this.changeHandler} name='content' value={this.state.content} placeholder="Share details about your meal and experience here..." />
+                    </Form.Group>
+                    <Button type='submit'>Submit Review</Button>{this.state.error ? <p class="error-message">{this.state.error}</p> : null}
+                </Form>
+            </div>
         )
     }
 }
