@@ -14,7 +14,6 @@ const NavBar = (props) => {
             {props.user ?
                 <>
                     <Nav.Link href={`/users/${props.user.id}`}> My Profile </Nav.Link>
-                    {/* <NavLink to={`/users/${props.user.id}`}>My Profile</NavLink> */}
                     <Nav.Item> <Nav.Link onClick={props.logoutHandler}> Log Out </Nav.Link>  </Nav.Item>
                 </>
             :
