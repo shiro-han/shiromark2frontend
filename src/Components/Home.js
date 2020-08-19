@@ -28,7 +28,8 @@ class Home extends React.Component {
     render(){
         return(
             <>
-                <h2>ShiroMark 2 Home Page</h2>
+            <br/>
+            <br />
                 <Carousel>
                     <Carousel.Item>
                         <img
@@ -70,6 +71,8 @@ class Home extends React.Component {
                         </Carousel.Caption>
                     </Carousel.Item>
                     </Carousel>
+                    <br/>
+                    <br />
                 <h4>Recent Reviews</h4>
                 <div>
                     {this.props.user && this.props.user.following.length > 0 && this.state.reviews.length > 0 ? 

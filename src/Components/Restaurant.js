@@ -33,7 +33,7 @@ class Restaurant extends React.Component{
                 {this.state.restaurant ? 
                     <>
                         <div>
-                            <h1>{restaurant.name}</h1>
+                            <h1 class='header'>{restaurant.name}</h1>
                             <h3>Address: {restaurant.location}</h3>
                             <h4>Phone: {restaurant.phone}</h4>
                             <h5>Tags: {restaurant.tags.join(', ')}</h5>

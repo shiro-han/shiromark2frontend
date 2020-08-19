@@ -96,7 +96,7 @@ class User extends React.Component{
                 {this.state.user ?
                     <Container>
                         <div>
-                            <h1>{this.state.user.name} 
+                            <h1 class='header'>{this.state.user.name} 
                             {this.props.current_user ?
                                 this.state.user.id === this.props.current_user.id ?
                                     <> 
