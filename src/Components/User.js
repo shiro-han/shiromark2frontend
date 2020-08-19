@@ -2,6 +2,7 @@ import React from 'react'
 import Review from './Review'
 import FollowingList from './FollowingList'
 import FollowersList from './FollowersList'
+import UserUpdateForm from './UserUpdateForm'
 import {Switch, Route, NavLink, Redirect} from 'react-router-dom'
 import {Button, Container, Row, Col, Image, Card, Nav, CardGroup, Spinner} from 'react-bootstrap'
 const token = localStorage.getItem("token")
@@ -12,7 +13,8 @@ class User extends React.Component{
     state = {
         user: null,
         showFollowing: false,
-        showFollowers: false
+        showFollowers: false,
+        showEdit: false
     }
 
     fetchUser = (id) => {
@@ -68,10 +70,15 @@ class User extends React.Component{
         this.setState({showFollowing: true})
     }
 
+    showEdit = () => {
+        this.setState({showEdit: true})
+    }
+
     closeModals = () => {
         this.setState({
             showFollowers: false,
-            showFollowing: false
+            showFollowing: false,
+            showEdit: false
         })
     }
 
@@ -90,13 +97,14 @@ class User extends React.Component{
             <>
                 {this.state.user ?
                     <Container>
-
                         <div>
                             <h1>{this.state.user.name} 
                             {this.props.current_user ?
-                                this.state.user.id === this.props.current_user.id ? 
-                                    // <Button onClick={this.redirect} variant="primary" id="edit-profile">Edit Profile</Button>
-                                    <NavLink to="/profile">Edit Profile </NavLink>
+                                this.state.user.id === this.props.current_user.id ?
+                                    <> 
+                                        <Button onClick={this.showEdit} variant="primary" id="edit-profile">Edit Profile</Button>
+                                        <UserUpdateForm user={this.props.current_user} show={this.state.showEdit} closeModals={this.closeModals} />
+                                    </>
                                 :
                                     <button onClick={this.buttonHandler}>{followBool ? "UnFollow" : "Follow"}</button>
                             : 
@@ -107,6 +115,7 @@ class User extends React.Component{
                                     <Image src={this.state.user.image} alt='chicken' roundedCircle />
                                 </Col>
                             </Row>
+                            <p>Location: {this.state.user.location}</p>
                             <p>{this.state.user.bio}</p>
                             <CardGroup>
                                 <Card style={{ width: '6rem'}} className="text-center">

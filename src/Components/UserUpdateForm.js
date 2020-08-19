@@ -2,7 +2,7 @@ import React from 'react'
 import {Form, Button, Modal} from 'react-bootstrap'
 const token = localStorage.getItem("token")
 
-class ProfileForm extends React.Component{
+class UserUpdateForm extends React.Component{
 
     state = {
         username: this.props.user.username,
@@ -44,32 +44,47 @@ class ProfileForm extends React.Component{
 
     render() {
         return (
-            <div>
-                <h1 class="profile-title">Edit Profile</h1>
-                <form onSubmit={this.submitHandler} >
-                    <label>Username </label>
-                    <input onChange={this.changeHandler} value={this.state.username}  name='username' type='text' />
-                    <br/>
-                    <label>Password </label>
-                    <input onChange={this.changeHandler} value={this.state.password}  name='password' type='password' />
-                    <br/>
-                    <label>Display Name </label>
-                    <input onChange={this.changeHandler} value={this.state.name}  name='name' type='text' />
-                    <br/>
-                    <label>Location </label>
-                    <input onChange={this.changeHandler} value={this.state.location}  name='location' type='text' />
-                    <br/>
-                    <label>Profile Pic </label>
-                    <input onChange={this.changeHandler} value={this.state.image}  name='image' type='text' />
-                    <br/>
-                    <label>Bio </label>
-                    <input onChange={this.changeHandler} value={this.state.bio}  name='bio' type='text' />
-                    <br/>
-                    <input type='submit' value='Edit Profile' />
-                </form>
-            </div>
+            <Modal show={this.props.show}>
+                <Modal.Header>
+                    <Modal.Title>Editing Your Profile</Modal.Title>
+                </Modal.Header>
+                <Form onSubmit={this.submitHandler} >
+                <Modal.Body>
+                    <Form.Group>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control onChange={this.changeHandler} value={this.state.username}  name='username' type='text' />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control onChange={this.changeHandler} value={this.state.password}  name='password' type='password'/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Display Name</Form.Label>
+                        <Form.Control onChange={this.changeHandler} value={this.state.name}  name='name' type='text' />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Location</Form.Label>
+                        <Form.Control onChange={this.changeHandler} value={this.state.location}  name='location' type='text' />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Profile Pic</Form.Label>
+                        <Form.Control onChange={this.changeHandler} value={this.state.image}  name='image' type='text' />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Bio</Form.Label>
+                        <Form.Control onChange={this.changeHandler} value={this.state.bio}  name='bio' type='text' />
+                    </Form.Group>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={this.props.closeModals}>
+                    Close
+                </Button>
+                    <Button type='submit' >Submit</Button>
+                </Modal.Footer>
+                </Form>
+            </Modal>
         )
     }
 }
 
-export default ProfileForm;
+export default UserUpdateForm;
