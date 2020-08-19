@@ -72,7 +72,7 @@ class UserUpdateForm extends React.Component{
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Bio</Form.Label>
-                        <Form.Control onChange={this.changeHandler} value={this.state.bio}  name='bio' type='text' />
+                        <Form.Control onChange={this.changeHandler} value={this.state.bio}  name='bio' as="textarea" rows="3" />
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>

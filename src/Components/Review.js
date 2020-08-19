@@ -119,7 +119,7 @@ class Review extends React.Component{
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Content</Form.Label>
-                                <Form.Control onChange={this.changeHandler} name='content' value={this.state.content} />
+                                <Form.Control onChange={this.changeHandler} name='content' value={this.state.content} as="textarea" rows="3" />
                             </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>

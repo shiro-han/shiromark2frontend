@@ -68,7 +68,7 @@ class ReviewForm extends React.Component {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Content</Form.Label>
-                        <Form.Control id="review-content" onChange={this.changeHandler} name='content' value={this.state.content} placeholder="Share details about your meal and experience here..." />
+                        <Form.Control as="textarea" rows="3" onChange={this.changeHandler} name='content' value={this.state.content} placeholder="Share details about your meal and experience here..." />
                     </Form.Group>
                     <Button type='submit'>Submit Review</Button>{this.state.error ? <p class="error-message">{this.state.error}</p> : null}
                 </Form>

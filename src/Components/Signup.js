@@ -58,7 +58,7 @@ class Signup extends React.Component {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Bio</Form.Label>
-                        <Form.Control onChange={this.changeHandler} value={this.state.bio}  placeholder="Pork roll or Taylor ham? Hoagie, sub or sammy? Tell us where you're from and a little about you..." name='bio' type='text' id="form-bio"/>
+                        <Form.Control onChange={this.changeHandler} value={this.state.bio}  placeholder="Pork roll or Taylor ham? Hoagie, sub or sammy? Tell us where you're from and a little about you..." name='bio' as="textarea" rows="3"/>
                     </Form.Group>
                     <Button type="submit">Create User</Button> {this.props.error ? <p className="error-message">{this.props.error}</p> : null}
 

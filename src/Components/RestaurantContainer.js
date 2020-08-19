@@ -42,7 +42,7 @@ class RestaurantContainer extends React.Component {
                                             }
                                         else {
                                             let previousRestaurant = this.state.restaurants[this.state.restaurants.indexOf(restaurant) - 1]
-                                            return <Row>
+                                            return <Row className='restaurantRow'>
                                                 <Col><RestaurantPreview key={previousRestaurant.id} restaurant={previousRestaurant} /></Col>
                                                 <Col><RestaurantPreview key={restaurant.id} restaurant={restaurant} /></Col>
                                             </Row>
